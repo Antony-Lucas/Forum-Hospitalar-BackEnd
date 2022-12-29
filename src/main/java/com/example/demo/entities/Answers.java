@@ -26,6 +26,7 @@ public class Answers implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	private String imageUrl;
 	@Column(nullable = false, columnDefinition = "text")
 	private String content;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", timezone="GMT")
@@ -44,9 +45,10 @@ public class Answers implements Serializable{
 	
 	public Answers() {}
 	
-	public Answers(Long id, User userName, Instant moment, String content, Asks asks, Management management) {
+	public Answers(Long id, String imageUrl, User userName, Instant moment, String content, Asks asks, Management management) {
 		super();
 		this.id = id;
+		this.imageUrl = imageUrl;
 		this.userName = userName;
 		this.content = content;
 		this.moment = moment;
@@ -60,6 +62,14 @@ public class Answers implements Serializable{
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+	
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
 	public User getUserName() {
