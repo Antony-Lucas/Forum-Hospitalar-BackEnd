@@ -11,16 +11,17 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "module")
 public class Modules implements Serializable{
 	private static final long serialVersionUID = 1L;
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String title;
-	
+	@JsonIgnore
 	@OneToMany(mappedBy="modules")
 	private List<Department> department = new ArrayList<>();
 	

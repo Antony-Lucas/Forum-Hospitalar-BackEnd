@@ -22,4 +22,8 @@ public class ModulesServices {
 		Optional<Modules> obj = userRepository.findById(id);
 		return obj.get();
 	}
+	
+	public Modules insert(Modules obj) {
+		return userRepository.save(obj);
+	}
 }

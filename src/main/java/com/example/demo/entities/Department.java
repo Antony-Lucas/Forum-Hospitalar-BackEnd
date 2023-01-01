@@ -25,7 +25,6 @@ public class Department implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nameDepartment;
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "moduleId")
 	private Modules modules;

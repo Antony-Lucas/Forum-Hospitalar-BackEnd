@@ -43,7 +43,7 @@ public class AwsServices implements AwsServicesImpl{
 
 	@Override
 	public com.amazonaws.services.s3.model.PutObjectResult upload(String path, String fileName, Optional<Map<String, String>> optionalMetaData,
-			InputStream inputStream) {
+		InputStream inputStream) {
 		ObjectMetadata objectMetadata = new ObjectMetadata();
 		optionalMetaData.ifPresent(map ->{
 			if(!map.isEmpty()){
