@@ -26,6 +26,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -105,6 +106,12 @@ public class UserResources {
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User obj){
 		obj = services.update(id, obj);
+		return ResponseEntity.ok().body(obj);
+	}
+	
+	@PutMapping(value = "/{id}/pass")
+	public ResponseEntity<User> updatePass(@PathVariable Long id, @RequestBody User obj){
+		obj = services.updatePass(id, obj);
 		return ResponseEntity.ok().body(obj);
 	}
 	
