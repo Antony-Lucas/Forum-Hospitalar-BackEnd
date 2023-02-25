@@ -31,30 +31,39 @@ public class Asks implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String imageUrl;
+	
 	@Column(nullable = false, columnDefinition = "text")
 	private String content;
+	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", timezone="GMT")
 	private Instant moment;
+	
 	@ManyToOne
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	@JoinColumn(name = "clientId")
 	private Department client;
+	
+	private Long depId;
+	
 	@ManyToOne
 	@JoinColumn(name = "manageId")
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private Management management;
+	
 	@ManyToOne
 	@JoinColumn(name = "userNameId")
 	private User userName;
+	
 	@OneToMany(mappedBy = "asks", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Answers> answers = new ArrayList<>();
 	public Asks() {
 		
 	}
 
-	public Asks(Long id, String imageUrl, User userName, String content, Instant moment, Department client, Management management) {
+	public Asks(Long id, Long depIp, String imageUrl, User userName, String content, Instant moment, Department client, Management management) {
 		super();
 		this.id = id;
+		this.depId = depIp;
 		this.userName = userName;
 		this.imageUrl = imageUrl;
 		this.content = content;
@@ -71,6 +80,10 @@ public class Asks implements Serializable{
 		this.id = id;
 	}
 	
+	public Long getDepId() {
+		return client.getId();
+	}
+
 	public User getUserName() {
 		return userName;
 	}
